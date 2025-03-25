@@ -1,0 +1,38 @@
+import { IShoeType } from "../types/shoe";
+export const getShoeDetaiLById = async (id: number) => {
+    try {
+        const response = await fetch(
+            `https://apistore.cybersoft.edu.vn/api/Product/getid?id=${id}`
+        );
+        const data = await response.json();
+
+        const datadetailShoe: IShoeType = data.content;
+        return datadetailShoe;
+    }catch (error) {
+        console.log("error:", error);
+    }
+};
+export const getListShoeAPI = async () => {
+    try {
+      const response = await fetch(
+        "https://apistore.cybersoft.edu.vn/api/Product"
+      );
+      const data = await response.json();
+      const dataListShoe = data.content;
+      return dataListShoe;
+    } catch (error) {
+      console.log("error:", error);
+    }
+  };
+export const getListProductByKeyWord = async (keyWord: string | undefined) => {
+    try {
+        const response = await fetch(
+            `https://apistore.cybersoft.edu.vn/api/Product?keyword=${keyWord || ""}`
+        );
+        const data = await response.json();
+        const dataListShoe = data.content;
+        return dataListShoe;
+    }catch(error) {
+        console.log("error", error);
+    }
+}
